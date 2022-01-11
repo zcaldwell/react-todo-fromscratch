@@ -16,7 +16,7 @@ export default function AuthForm({ setEmail, setPassword, password, email, handl
         <label>Password:</label>
         <input
           type="text"
-          placeHolder="Enter Password"
+          placeholder="Enter Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />

@@ -5,7 +5,12 @@ export async function fetchTodos() {
   return checkError(resp);
 }
 
-export async function addTodo(todo) {
-  const resp = await client.from('todos').insert(todo);
+export async function addTodo(task) {
+  const resp = await client.from('todos').insert([{ task: task, user_id: client.auth.user().id }]);
+  return checkError(resp);
+}
+
+export async function toggleCompleted(id, is_complete) {
+  const resp = await client.from('todos').update({ is_complete }).eq('id', id);
   return checkError(resp);
 }

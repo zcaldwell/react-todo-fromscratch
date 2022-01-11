@@ -1,16 +1,16 @@
 import React from 'react';
 
-export default function Todo({ todo, updateTodo }) {
+export default function Todo({ todos, addTodo }) {
   return (
     <div className="form-control">
       <form>
         <label>Todo</label>
         <input
           type="text"
-          placeholder="Add New Task"
-          value={todo}
+          placeolder="Add New Task"
+          value={todos}
           onChange={(e) => {
-            updateTodo('todo', e.target.value);
+            addTodo('todos', e.target.value);
           }}
         ></input>
       </form>
