@@ -5,7 +5,7 @@ import { useState } from 'react';
 import './App.css';
 import List from './views/List/List';
 
-function App({ todos }) {
+function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
 
   return (
@@ -16,7 +16,7 @@ function App({ todos }) {
             {currentUser && (
               <div className="logout">
                 <h1>Hi</h1>
-                <List todos={todos} />
+                <List />
               </div>
             )}
             {!currentUser && <Auth setCurrentUser={setCurrentUser} />}

@@ -8,6 +8,7 @@ export default function TodoList({ todos }) {
           <li key={todo.id}>{todo.task}</li>
         </ul>
       ))}
+      <p> hi </p>
     </div>
   );
 }
