@@ -14,7 +14,7 @@ export default function TodoList({ todo, handleClick, handleDelete }) {
             }}
           ></input>
           <li key={tod.id}>{tod.task}</li>
-          <button type="button" onClick={() => handleDelete(tod.id)}>
+          <button type="button" onClick={() => handleDelete(tod)}>
             Delete
           </button>
         </ul>
