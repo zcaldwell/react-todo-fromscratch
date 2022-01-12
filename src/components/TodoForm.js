@@ -1,16 +1,15 @@
 import React from 'react';
 
-export default function TodoForm({ task, addTodo, handleSubmit }) {
+export default function TodoForm({ setTask, handleSubmit }) {
   return (
     <div className="form-control">
       <form>
         <label>Todo</label>
         <input
           type="text"
-          placeolder="Add New Task"
-          value={task}
+          placeholder="Add New Task"
           onChange={(e) => {
-            addTodo('task', e.target.value);
+            setTask(e.target.value);
           }}
         ></input>
         <div className="submit-button">

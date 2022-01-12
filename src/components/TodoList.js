@@ -1,14 +1,24 @@
 import React from 'react';
 
-export default function TodoList({ todos }) {
+export default function TodoList({ todo, handleClick, handleDelete }) {
   return (
     <div className="todo-list">
-      {todos.map((todo) => (
-        <ul key={todo.id}>
-          <li key={todo.id}>{todo.task}</li>
+      {todo.map((tod) => (
+        <ul key={tod.id}>
+          <input
+            type="checkbox"
+            value={tod.is_complete}
+            checked={tod.is_complete}
+            onChange={() => {
+              handleClick(tod);
+            }}
+          ></input>
+          <li key={tod.id}>{tod.task}</li>
+          <button type="button" onClick={() => handleDelete(tod.id)}>
+            Delete
+          </button>
         </ul>
       ))}
-      <p> hi </p>
     </div>
   );
 }

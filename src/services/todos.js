@@ -1,7 +1,7 @@
 import { client, checkError } from './client.js';
 
 export async function fetchTodos() {
-  const resp = await client.from('todos').select('*');
+  const resp = await client.from('todos').select('*').order('id', { ascending: false });
   return checkError(resp);
 }
 
@@ -12,5 +12,10 @@ export async function addTodo(task) {
 
 export async function toggleCompleted(id, is_complete) {
   const resp = await client.from('todos').update({ is_complete }).eq('id', id);
+  return checkError(resp);
+}
+
+export async function deleteTodo(id) {
+  const resp = await client.from('todos').delete().eq('id', id);
   return checkError(resp);
 }
