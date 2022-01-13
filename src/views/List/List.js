@@ -34,6 +34,7 @@ export default function List() {
     try {
       const [resp] = await addTodo(task);
       setTodo((prevState) => [...prevState, resp]);
+      setTask('');
       alert('Task Added!');
     } catch {
       alert('Task Failed To Add!"');
@@ -43,7 +44,7 @@ export default function List() {
   return (
     <div>
       <TodoList todo={todo} handleClick={handleClick} handleDelete={handleDelete} />
-      <TodoForm {...todo} handleSubmit={handleSubmit} setTask={setTask} />
+      <TodoForm handleSubmit={handleSubmit} setTask={setTask} task={task} />
     </div>
   );
 }
