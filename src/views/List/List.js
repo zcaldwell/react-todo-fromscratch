@@ -18,7 +18,6 @@ export default function List() {
   }, []);
 
   const handleClick = async (tod) => {
-    tod.preventDefault();
     await toggleCompleted(tod.id, !tod.is_complete);
     const resp = await fetchTodos();
     setTodo(resp);
