@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { fetchTodos, toggleCompleted } from '../../services/todos';
 import TodoList from '../../components/TodoList';
 import TodoForm from '../../components/TodoForm';
-import { addTodo, deleteTodo } from '../../services/todos';
+import { addTodo, deleteTodo, fetchTodos, toggleCompleted } from '../../services/todos';
+import './List.css';
 
 export default function List() {
   const [todo, setTodo] = useState([]);
@@ -13,13 +13,12 @@ export default function List() {
     const fetchData = async () => {
       const data = await fetchTodos();
       setTodo(data);
-      console.log(data);
     };
     fetchData();
   }, []);
 
   const handleClick = async (tod) => {
-    console.log(tod);
+    tod.preventDefault();
     await toggleCompleted(tod.id, !tod.is_complete);
     const resp = await fetchTodos();
     setTodo(resp);
