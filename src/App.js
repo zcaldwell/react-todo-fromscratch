@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import Auth from './views/Auth/Auth';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { getUser, logout } from './services/users';
+import { useState } from 'react';
 import './App.css';
+import List from './views/List/List';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(getUser());
+  const logoutUser = async () => {
+    await logout();
+    setCurrentUser(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {currentUser && (
+              <div className="logout">
+                <header>
+                  <button className="logout-button" onClick={logoutUser}>
+                    Log Out
+                  </button>
+                </header>
+                <List />
+              </div>
+            )}
+            {!currentUser && <Auth setCurrentUser={setCurrentUser} />}
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
